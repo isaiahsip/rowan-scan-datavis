@@ -1,4 +1,7 @@
 # This file is used internally by FFMPEG.
-file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/2261916556_852269699_710245291.mp4'
-file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/4161344704_2703369040_2034604428.mp4'
-file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/1016925918_675861230_1254028496.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/4168144898_1831374817_546810609.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/124052906_2533248132_1995751864.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/1181543676_2376300611_3941841502.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/488709779_60789886_3235083475.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/1837030374_3390147705_2217697115.mp4'
+file 'file:/Users/isaiah/Documents/manim_testing/media/videos/mainsurface/1080p60/partial_movie_files/ThreeDGraph/2669446220_60789886_3603196392.mp4'
