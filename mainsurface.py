@@ -26,8 +26,8 @@ for label in labels:
         text_label = Text(label.text).set_z_index(z_index_value=0) # Create a Text Mobject from the current label's text
         label.become(text_label)
 
-x_label = axes.get_x_axis_label(Tex(r"\text{C1–C2 (\textit{Å})}")).shift(LEFT * 1.8 + DOWN * .2).scale(.8).set_color(BLACK)
-y_label = axes.get_y_axis_label(Tex(r"\text{C3–C4 (\textit{Å})}")).shift(LEFT * 1.1 + DOWN * 0.1).rotate_about_origin(180 * DEGREES).scale(.8).set_color(BLACK)
+x_label = axes.get_x_axis_label(Tex(r"\text{C1–C2 (\textit{Å})}")).shift(LEFT * 1.8 + DOWN * 0.1).scale(.8).set_color(BLACK)
+y_label = axes.get_y_axis_label(Tex(r"\text{C3–C4 (\textit{Å})}")).shift(LEFT * 1.55).rotate_about_origin(180 * DEGREES).scale(.8).set_color(BLACK)
 z_label = axes.get_z_axis_label(Tex(r"\text{Relative Energy (\textit{kcal/mol})}")).set_color(BLACK).scale(.75).shift(IN *.8)
 x_label.set_z_index(z_index_value=0)
 y_label.set_z_index(z_index_value=0)
@@ -75,16 +75,18 @@ class ThreeDGraph(ThreeDScene):
             triangle.set_z_index(z_index_value=4)
             self.add(triangle) # add polygons to scene
 
-        self.wait(2)
+        self.wait(2) # between init and camera move to 3D
+
         self.move_camera(phi=65 * DEGREES, theta=-120 * DEGREES, zoom=1.25, frame_center=center, run_time=3, added_anims=[DrawBorderThenFill(axes)])
-      
+        self.begin_ambient_camera_rotation(rate=-.02)
+
 
         self.play([Write(z_label), Write(x_label), Write(y_label)]) # write the z label on z axis
 
         def linefollow(t):
             return np.array([t, 0, poly(t)])
 
-        self.wait(1)
+        self.wait(2)
         graph = axes.plot_parametric_curve(
                     lambda t: np.array([t, 0, poly(t)]),
                     t_range=[-2.06828733497, 2.06828733497],
@@ -104,23 +106,19 @@ class ThreeDGraph(ThreeDScene):
 
         dot = Dot3D(point=rotated_func(-2.06828733497), 
                     color=YELLOW, radius=.06).set_z_index(z_index_value=100).set_opacity(opacity=0)
-        traced_path = TracedPath(dot.get_center, stroke_color=YELLOW, stroke_width=3, dissipating_time=1).set_z_index(z_index_value=100)
+        traced_path = TracedPath(dot.get_center, stroke_color=YELLOW, stroke_width=3, dissipating_time=.6).set_z_index(z_index_value=100)
         time = ValueTracker(-2.06828733497)
         dot.add_updater(lambda m: m.move_to(rotated_func(time.get_value()) + offset))
 
-
-        self.begin_ambient_camera_rotation(rate=-.05)
-        self.wait(1)
         self.play(Unwrite(z_label), run_time=1)
         self.play(Create(realgraph), run_time=4)
-        self.wait(1)
 
-        self.play(Create(dot), Create(traced_path), run_time=0.5)
-        self.wait(1)
-
-        self.play(time.animate.set_value(2.06828733497), run_time=3.7142857142, rate_func=smooth)
-        self.wait(3)
-        self.play(Uncreate(realgraph), run_time=3)
+        self.play(Create(dot), Create(traced_path), run_time=0.01)
+        self.play(time.animate.set_value(2.06828733497), run_time=4, rate_func=linear)
+        self.wait(4)
+        self.stop_ambient_camera_rotation()
+        self.move_camera(focal_distance=400.0, zoom=1.25, frame_center=center,phi=0, theta=-90 * DEGREES, run_time=2, added_anims=[Uncreate(realgraph), Uncreate(axes), Unwrite(x_label), Unwrite(y_label)])
+        self.wait(2)   
 
 
 
