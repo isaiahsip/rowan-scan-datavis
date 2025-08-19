@@ -1,0 +1,1 @@
+This is the code for the [Diels–Alder 3D PES graph visualization](https://www.linkedin.com/posts/rowansci_dielsalder-pes-scan-activity-7350890204720689152-aLHn) that I created while working at Rowan. To be honest, I vibe coded through this and there's a lot of weird scaling factors, but it rendered correctly and that's what matters. 
